@@ -8,7 +8,7 @@ export default `#graphql
 
 
   #qdo é type é busca 
-  type FavoriteMission {
+  type SavedLaunch {
     id: ID
     mission_name: String
   }
@@ -52,7 +52,7 @@ type Links {
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    favorites: [FavoriteMission]
+    savedLaunches: [SavedLaunch]
     launchesPast(limit: Int, offset: Int): [Launch]
     launch(id: ID!): LaunchInformation
   }
@@ -64,6 +64,6 @@ type Links {
 
   type Mutation {
     #books(book: BookSave): Book
-    favorites(id: ID!, mission_name: String!): FavoriteMission
+    savedLaunches(id: ID!, mission_name: String!): SavedLaunch
   }
 `;
