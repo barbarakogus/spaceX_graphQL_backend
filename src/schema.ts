@@ -19,18 +19,42 @@ export default `#graphql
   }
 
   type Launch {
-    id: ID
+    id: ID!
     mission_name: String
     launch_date_local: String
     launch_site: LaunchSite
   }
+
+  type Rocket {
+    rocket_name: String
+    rocket_type: String
+}
+
+type Links {
+    flickr_images: [String]
+    video_link: String
+    article_link: String
+}
+
+  type LaunchInformation {
+    id: ID!
+    mission_name: String
+    launch_date_local: String
+    launch_site: LaunchSite
+    details: String
+    launch_success: Boolean
+    launch_year: String
+    rocket: Rocket
+    links: Links
+}
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     favorites: [FavoriteMission]
-    launchesPast(offset: Int, limit: Int): [Launch]
+    launchesPast(limit: Int, offset: Int): [Launch]
+    launch(id: ID!): LaunchInformation
   }
 
   # input BookSave {
