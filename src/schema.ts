@@ -65,5 +65,6 @@ type Links {
   type Mutation {
     #books(book: BookSave): Book
     savedLaunches(id: ID!, mission_name: String!): SavedLaunch
+    deleteSavedLaunch(id: ID!): SavedLaunch
   }
 `;
