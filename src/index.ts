@@ -65,7 +65,6 @@ const resolvers = {
             return launches
         },
         launch: async (_, { id }) => {
-            console.log(id)
             const data = await request('https://api.spacex.land/graphql/', GET_LAUNCH_DETAILS, {
                 id
             });
