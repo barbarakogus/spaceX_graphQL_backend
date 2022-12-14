@@ -3,7 +3,6 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import typeDefs from "./schema";
 import { request, gql } from "graphql-request";
 
-// O que quero da SpaceX
 const GET_LAUNCHES_PAST = gql`
   query LaunchesPast($limit: Int, $offset: Int) {
     launchesPast(limit: $limit, offset: $offset) {
@@ -45,8 +44,6 @@ const GET_LAUNCH_DETAILS = gql`
 
 const savedLaunch = <any>[];
 
-// Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
     savedLaunches: () => savedLaunch,
@@ -59,11 +56,6 @@ const resolvers = {
           offset,
         }
       );
-      // data.launchesPast.forEach(element => {
-      //     const ids = launches.map(launch => launch.id)
-      //     if (ids.indexOf(element.id) === -1)
-      //         launches.push(element)
-      // });
       return data.launchesPast;
     },
     launch: async (_, { id }) => {
@@ -97,17 +89,11 @@ const resolvers = {
   },
 };
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
 const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });

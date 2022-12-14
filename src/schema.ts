@@ -4,10 +4,8 @@
 export default `#graphql
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
-  # This "Book" type defines the queryable fields for every book in our data source.
+  # This "SavedLaunch" type defines the queryable fields for every Saved Launch in my data source.
 
-
-  #qdo é type é busca 
   type SavedLaunch {
     id: ID
     mission_name: String
@@ -28,13 +26,13 @@ export default `#graphql
   type Rocket {
     rocket_name: String
     rocket_type: String
-}
+  }
 
-type Links {
+  type Links {
     flickr_images: [String]
     video_link: String
     article_link: String
-}
+  }
 
   type LaunchInformation {
     id: ID!
@@ -46,24 +44,18 @@ type Links {
     launch_year: String
     rocket: Rocket
     links: Links
-}
+  }
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  # case, the "savedLaunches" query returns an array of zero or more savedLaunches (defined above).
   type Query {
     savedLaunches: [SavedLaunch]
     launchesPast(limit: Int, offset: Int): [Launch]
     launch(id: ID!): LaunchInformation
   }
 
-  # input BookSave {
-  #  title: String!
-  #  author: String!
-  #}
-
   type Mutation {
-    #books(book: BookSave): Book
     savedLaunches(id: ID!, mission_name: String!): SavedLaunch
     deleteSavedLaunch(id: ID!): SavedLaunch
   }
